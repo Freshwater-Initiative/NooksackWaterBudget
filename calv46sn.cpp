@@ -242,7 +242,7 @@ int calcts( double **Si,            const vector<vector<double> > &Sp,  double *
         }
         extraFiles[i] << left << dec << setw(11) << "Date";
         for (jsub = 0; jsub < Nsub; jsub++) {
-            extraFiles[i] << setw(12) << "Drainage " << left << dec << setw(5)
+            extraFiles[i] << setw(12) << "Drainage_" << left << dec << setw(5)
                           << input_structures::Drainage[index_to_real_DID[jsub]].RealDrainageID;
         }
         extraFiles[i] << endl;
@@ -258,7 +258,7 @@ int calcts( double **Si,            const vector<vector<double> > &Sp,  double *
         }
         oFile[i] << dec << setw(11) << "Date";
         for (jsub = 0; jsub < Nsub; jsub++) {
-            oFile[i] << setw(10) << "Drainage " << left << dec << setw(5)
+            oFile[i] << setw(10) << "Drainage_" << left << dec << setw(5)
                      << input_structures::Drainage[index_to_real_DID[jsub]].RealDrainageID;;
         }
         oFile[i] << '\n';
@@ -277,7 +277,7 @@ int calcts( double **Si,            const vector<vector<double> > &Sp,  double *
             oFile[i] << setw(11) << "Years";
         }
         for (jsub = 0; jsub < Nsub; jsub++) {
-            oFile[i] << setw(10) << "Drainage " << left << dec << setw(5)
+            oFile[i] << setw(10) << "Drainage_" << left << dec << setw(5)
                      << input_structures::Drainage[index_to_real_DID[jsub]].RealDrainageID;;
         }
         oFile[i] << '\n';
@@ -313,9 +313,9 @@ int calcts( double **Si,            const vector<vector<double> > &Sp,  double *
             oFile[i+ncode+NuserTypes] << setw(11) << "Years";
         }
         for (jsub = 0; jsub < Nsub; jsub++) {
-            oFile[i+ncode] << setw(10) << "Drainage " << left << dec << setw(5)
+            oFile[i+ncode] << setw(10) << "Drainage_" << left << dec << setw(5)
                            << input_structures::Drainage[index_to_real_DID[jsub]].RealDrainageID;
-            oFile[i+ncode+NuserTypes] << setw(10) << "Drainage " << left << dec << setw(5)
+            oFile[i+ncode+NuserTypes] << setw(10) << "Drainage_" << left << dec << setw(5)
                                       << input_structures::Drainage[index_to_real_DID[jsub]].RealDrainageID;
         }
         oFile[i+ncode] << '\n';
@@ -331,7 +331,7 @@ int calcts( double **Si,            const vector<vector<double> > &Sp,  double *
     }
     oFile[16] << left << dec << setw(11) << "Date";
     for (jsub = 0; jsub < Nsub; jsub++) {
-        oFile[16] << setw(12) << "Drainage " << left << dec << setw(5)
+        oFile[16] << setw(12) << "Drainage_" << left << dec << setw(5)
                   << input_structures::Drainage[index_to_real_DID[jsub]].RealDrainageID;
     }
     oFile[16] << endl;
