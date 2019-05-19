@@ -711,7 +711,6 @@ int calcts( double **Si,            const vector<vector<double> > &Sp,  double *
     double t1 = static_cast<double>(clock())/static_cast<double>(CLOCKS_PER_SEC);
     cout << t1 - t0 << " seconds to read depth to water file \n";
 #endif
-
     if (nooksack) {
         n_irrig = 1;   // DGT warning.  If this is changed the logic associated with
         //                averaging depth_irrig_dem will need to be adjusted
@@ -748,6 +747,79 @@ int calcts( double **Si,            const vector<vector<double> > &Sp,  double *
         // should be processed in. The order is in LL(ngut+1) to LL(ngut+nrch). DGT
         // introduced an additive factor of MAXCHN to avoid confusion between basin
         // and reach numbers and we have to remove it.
+
+#ifdef SS
+    if (timeinfo->tm_mon == 0 && timeinfo->tm_mday == 1) {   // January 1st
+        cout << " Updating depth to water table.  timestep " << setw(5) << istep << " " << asctime(timeinfo);
+        char cr;
+        ifstream zbarInFile("zbar_ss.dat");
+        if (!zbarInFile) {
+            cerr << "Failed to open zbar_ss.dat\n";
+            exit(1);
+        }
+        double MF_depth;    // MODFLOW output
+        int sub;
+        for (jsub = 0; jsub < Nsub; jsub++) {
+            zbarInFile >> sub >> MF_depth;
+            //cerr << dec << setw(3) << sub;
+            for (n = 0; n < nreg; n++) {
+                zbar[jsub][n] = MF_depth;
+                //cerr << fixed << setw(12) << setprecision(6) << zbar[jsub][n];
+            }
+            zbarInFile.get(cr);	// read line end
+            //cerr << '\n';
+        }
+        zbarInFile.close();
+    }
+#endif // SS
+#ifdef IRR
+    if (timeinfo->tm_mon == 8 && timeinfo->tm_mday == 30) {   // September 30th
+        cout << " Updating depth to water table.  timestep " << setw(5) << istep << " " << asctime(timeinfo);
+        char cr;
+        ifstream zbarInFile("zbar_irr.dat");
+        if (!zbarInFile) {
+            cerr << "Failed to open zbar_irr.dat\n";
+            exit(1);
+        }
+        double MF_depth;    // MODFLOW output
+        int sub;
+        for (jsub = 0; jsub < Nsub; jsub++) {
+            zbarInFile >> sub >> MF_depth;
+            //cerr << dec << setw(3) << sub;
+            for (n = 0; n < nreg; n++) {
+                zbar[jsub][n] = MF_depth;
+                //cerr << fixed << setw(12) << setprecision(6) << zbar[jsub][n];
+            }
+            zbarInFile.get(cr);	// read line end
+            //cerr << '\n';
+        }
+        zbarInFile.close();
+    }
+#endif // IRR
+#ifdef NIRR
+    if (timeinfo->tm_mon == 2 && timeinfo->tm_mday == 31) {   // March 31st
+        cout << " Updating depth to water table.  timestep " << setw(5) << istep << " " << asctime(timeinfo);
+        char cr;
+        ifstream zbarInFile("zbar_nirr.dat");
+        if (!zbarInFile) {
+            cerr << "Failed to open zbar_nirr.dat\n";
+            exit(1);
+        }
+        double MF_depth;    // MODFLOW output
+        int sub;
+        for (jsub = 0; jsub < Nsub; jsub++) {
+            zbarInFile >> sub >> MF_depth;
+            //cerr << dec << setw(3) << sub;
+            for (n = 0; n < nreg; n++) {
+                zbar[jsub][n] = MF_depth;
+                //cerr << fixed << setw(12) << setprecision(6) << zbar[jsub][n];
+            }
+            zbarInFile.get(cr);	// read line end
+            //cerr << '\n';
+        }
+        zbarInFile.close();
+    }
+#endif // NIRR
 
         for (jsub = 1; jsub <= Nsub; jsub++) {
             js = jsub-1;    // Fortran to C indexing
@@ -897,21 +969,29 @@ int calcts( double **Si,            const vector<vector<double> > &Sp,  double *
             art_drainage_out = 0.0;		// Artificial drainage
 
 #ifdef ZBAR_OUT
-            zbarFile << dec << setw(4) << istep;
-            zbarFile << dec << setw(4) << jsub;
-            // all nreg regions have the same value at this point in the program
+            if (istep > 0) {
+                zbarFile << dec << setw(4) << istep;
+                zbarFile << dec << setw(4) << jsub;
+                // all nreg regions have the same value at this point in the program
+                dateZbarFile << dec << setw(4) << istep;
+                dateZbarFile << dec << setw(4) << jsub;
+                dateZbarFile << dec << setw(11) << dateStr;
+            }
 #endif
-//#ifndef ZBAR_IN
+
             // the previous timestep's call to watermgmt calculated groundwater_to_take
             if (istep > 1) { //can't do any pumping on first timestep because we haven't called watermgmt yet: assume zero pumping when istep=1
                 dth1 = Sp[3][js];  // dgt 11/4/07 added this line to get dth1 from corresponding basin parameter
                 for (n = 0; n < nreg; n++) {
+#ifdef ZBAR_IN
+                    zbar[js][n] = zbar_in[istep][js][n];
+#endif // ZBAR_IN
                     zbar[js][n] += groundwater_to_take[js]/(Sp[0][js]/1.0e6)/dth1;     //RAW 18-Jul-2005 bug fix: Sp(1,JS)/1e6 was Sp(1,JS)*1e6
                 }
                 //  m/timestep = m3/timestep/(m^2)/porosity
                 //   DGT 11/4/07 changed the above from DTH to DTH1 because topmodel saturated zone works with that.
             }
-//#endif
+
             for (i_irrig = 1; i_irrig <= (n_irrig+1); i_irrig++) {
                 if (i_irrig == 1) {
                     wt1 = wt0*(1.0 - Sp[19][js]); //unirrigated fraction
@@ -957,7 +1037,7 @@ int calcts( double **Si,            const vector<vector<double> > &Sp,  double *
                                maxA, maxSlp, maxInt, sumr[js][kk-1], sumq[js][kk-1], sumae[js][kk-1], s0[js][kk-1], q0[js],
                                sr[js][kk-1], cv[js][kk-1], aciem[js][kk-1], acsem[js][kk-1], sumpe[js][kk-1], sumie[js][kk-1],
                                sumqb[js][kk-1], sumce[js][kk-1], sumsle[js][kk-1], sumr1[js][kk-1], qb[js], qinst1,
-                               dr1, sumqv[js][kk-1], sumse[js][kk-1], zbar[js][kk-1], zbar_in[istep][js][kk-1], tdh, zr[js], ak0fzrdt[js],
+                               dr1, sumqv[js][kk-1], sumse[js][kk-1], zbar[js][kk-1], tdh, zr[js], ak0fzrdt[js],
                                logoqm[js], qvmin[js], dth[js], sumad, evap_mm, qlat_mm, ipflag, rirr, js,
                                upwelling_temporary, recharge_temporary, precip_minus_et_temporary);
 
@@ -1087,12 +1167,17 @@ int calcts( double **Si,            const vector<vector<double> > &Sp,  double *
             for (n = 0; n < nreg; n++) {
                 zbar[js][n] = zbar_d;
 #ifdef ZBAR_OUT
-                zbarFile << scientific << setw(16) << setprecision(9) << zbar[js][n]; // all nreg regions now have been set to a single value
+                if (istep > 0) {
+                    zbarFile << scientific << setw(17) << setprecision(9) << zbar[js][n]; // all nreg regions now have been set to a single value
+                }
 #endif
-                //zbar[js][n] = zbar_d;
             }
 #ifdef ZBAR_OUT
-            zbarFile << '\n';
+            if (istep > 0) {
+                zbarFile << '\n';
+                dateZbarFile << scientific << setw(17) << setprecision(9) << zbar[js][0];   // Record only the first region.
+                dateZbarFile << '\n';
+            }
 #endif
             if (istep > 0)
                 tempave[js] = (bTmax[js][istep-1] + bTmin[js][istep-1])/2.0; // DGT 10/21/12 record ave temperature for output

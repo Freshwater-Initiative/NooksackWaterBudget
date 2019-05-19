@@ -39,12 +39,17 @@ int build_topnet_to_client_index()
 
 	//CatchID, DownCatchID, DrainID, NodeId, Reach_number, Outlet_X, Outlet_Y, direct_area, f, k, dth1, dth2,
 	// soilc, c, psif, chv, can_capacity, cr, Albedo, Lapse_rate, average_elevation, lambda, std_dev_of_lambda
+	ofstream mapFile;
+	mapFile.open("map_client_to_topnet.dat");
+	mapFile << "  i  client topnet\n";
 	for (i = 0; i < NumDrainage; i++) {
 		Drainage[i].DrainageID     = real_array[i][0];
 		Drainage[i].RealDrainageID = real_array[i][2];
 		drainageMap[Drainage[i].RealDrainageID] = Drainage[i].DrainageID;
+		mapFile << dec << setw(3) << i << setw(6) << Drainage[i].RealDrainageID << setw(7) << drainageMap[Drainage[i].RealDrainageID] << endl;
 //cerr << Drainage[i].RealDrainageID << " " << drainageMap[Drainage[i].RealDrainageID] << endl;
 	}
+	mapFile.close();
 	index_to_real_DID.resize(NumDrainage);
     map<int, int>::iterator it = drainageMap.begin();
     i = 0;

@@ -37,11 +37,20 @@
 
 #define TRACE 10
 #define MAX_TRACE 5
-#define ZBAR_OUT
-//#define ZBAR_IN
+
 //#define WRIA1
 //#define LNWB
 //#define DEBUG
+
+#define ZBAR_OUT
+// Comprehensive zbar input
+//#define ZBAR_IN
+
+// Selective zbar input
+// For 2019 Whatcom County model, un-comment only one (or none) of the following three defines.
+//#define SS
+//#define IRR
+//#define NIRR
 
 #if TRACE
     extern std::ofstream traceFile;
@@ -50,6 +59,7 @@
 #endif
 #ifdef ZBAR_OUT
     extern std::ofstream zbarFile;
+    extern std::ofstream dateZbarFile;
 #endif
 #ifdef DEBUG
     extern std::ofstream debugFile1;
@@ -439,7 +449,7 @@ int topmod(double **si, const std::vector<std::vector<double> > &Sp, const int i
 	double &s0, double &q0, double &sr, double &cv, double &aciem,
 	double &acsem, double &sumpe, double &sumie, double &sumqb, double &sumce,
 	double &sumsle, double &sumr1, double &qb, std::vector<double> &qinst, std::vector<double> &dr, double &sumqv,
-	double &sumse, double &zbar, const double zbar_new, double **tdh, double &zr, double &ak0fzrdt, double &logoqm,
+	double &sumse, double &zbar, double **tdh, double &zr, double &ak0fzrdt, double &logoqm,
 	double &qvmin, double &dth, double &sumad, double &evap_mm, double &qlat_mm,
 	const int ipflag, std::array<double,Nip1> &rirr, const int js, double &upwelling, double &recharge, double &precip_minus_et);
 int watermgmt(const int StartDateTopnet, int &StartHourTopnet, const std::string dateStr, const int Timestep, const int NSteps,

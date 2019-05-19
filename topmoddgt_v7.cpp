@@ -55,7 +55,7 @@ int topmod(double **si, const vector<vector<double> > &Sp, const int isub, const
 	double &s0, double &q0, double &sr, double &cv, double &aciem,
 	double &acsem, double &sumpe, double &sumie, double &sumqb, double &sumce,
 	double &sumsle, double &sumr1, double &qb, vector<double> &qinst, vector<double> &dr, double &sumqv,
-	double &sumse, double &zbar, const double zbar_new, double **tdh, double &zr, double &ak0fzrdt, double &logoqm,
+	double &sumse, double &zbar, double **tdh, double &zr, double &ak0fzrdt, double &logoqm,
 	double &qvmin, double &dth, double &sumad, double &evap_mm, double &qlat_mm,
 	const int ipflag, array<double,Nip1> &rirr, const int js, double &upwelling, double &recharge, double &precip_minus_et)
 {
@@ -603,9 +603,7 @@ int topmod(double **si, const vector<vector<double> > &Sp, const int isub, const
 	//	    ZBARN = LOG( TEMP + Q0*szf/DTH1 ) / szf
 	//      ENDIF
 	//   DGT revised following careful analysis in notebook 4-1-98
-#ifdef ZBAR_IN
-    zbarn = zbar_new;
-#else
+
 	if (max(zbar*szf, zbar*szf-qv/dth1) > logoqm) {
 	//  Forward difference
 		zbarn = zbar + (-qv + q0*exp(-szf*zbar))/dth1;
@@ -618,7 +616,7 @@ int topmod(double **si, const vector<vector<double> > &Sp, const int isub, const
 			zbarn = log(exp(szf*zbar) + q0*szf/dth1)/szf;
 		}
 	}
-#endif
+
 	sumqv += qv;
 	qb = qv + (zbarn - zbar)*dth1;
 	//       write(51,592) it,isub,zbar,zbarn,dth1,qb,qv

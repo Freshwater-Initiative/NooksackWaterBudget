@@ -98,6 +98,7 @@ ifstream topinpFile, modelspcFile, rchareasFile, rainFile;
 #endif
 #ifdef ZBAR_OUT
     ofstream zbarFile;
+    ofstream dateZbarFile;
 #endif
 #ifdef DEBUG
     ofstream debugFile1, debugFile2, debugFile3;
@@ -125,7 +126,19 @@ int main()
 #endif
 
 #ifdef ZBAR_OUT
-    zbarFile.open("results/zbar.dat");
+    #ifdef SS
+        zbarFile.open("results/zbar_ss.dat");
+        dateZbarFile.open("results/date_zbar_ss.dat");
+    #elif defined IRR
+        zbarFile.open("results/zbar_irr.dat");
+        dateZbarFile.open("results/date_zbar_irr.dat");
+    #elif defined NIRR
+        zbarFile.open("results/zbar_nirr.dat");
+        dateZbarFile.open("results/date_zbar_nirr.dat");
+    #else
+        zbarFile.open("results/zbar.dat");
+        dateZbarFile.open("results/date_zbar.dat");
+    #endif
 #endif
 #ifdef DEBUG
     debugFile1.open("results/debug_1.dat");
@@ -181,6 +194,7 @@ int main()
 #endif
 #ifdef ZBAR_OUT
     zbarFile.close();
+    dateZbarFile.close();
 #endif
     r3File.close();
 #ifdef DEBUG
