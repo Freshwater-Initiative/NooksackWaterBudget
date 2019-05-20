@@ -43,14 +43,20 @@
 //#define DEBUG
 
 #define ZBAR_OUT
-// Comprehensive zbar input
+// Comprehensive zbar input. Leave ZBAR_IN commented-out if running with MODFLOW input (below)
 //#define ZBAR_IN
 
 // Selective zbar input
-// For 2019 Whatcom County model, un-comment only one (or none) of the following three defines.
+// For 2019 Whatcom County model, un-comment only one (or none) of the following four defines.
 //#define SS
 //#define IRR
 //#define NIRR
+#define MODFLOW_TRANSIENT
+
+#ifdef MODFLOW_TRANSIENT
+    #define IRR
+    #define NIRR
+#endif
 
 #if TRACE
     extern std::ofstream traceFile;
