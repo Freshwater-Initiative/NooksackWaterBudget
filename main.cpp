@@ -129,15 +129,15 @@ int main()
     #ifdef SS
         zbarFile.open("results/zbar_ss.dat");
         dateZbarFile.open("results/date_zbar_ss.dat");
+    #elif defined MODFLOW_TRANSIENT
+        zbarFile.open("results/zbar_transient.dat");
+        dateZbarFile.open("results/date_zbar_transient.dat");
     #elif defined IRR
         zbarFile.open("results/zbar_irr.dat");
         dateZbarFile.open("results/date_zbar_irr.dat");
     #elif defined NIRR
         zbarFile.open("results/zbar_nirr.dat");
         dateZbarFile.open("results/date_zbar_nirr.dat");
-    #elif defined MODFLOW_TRANSIENT
-        zbarFile.open("results/zbar_transient.dat");
-        dateZbarFile.open("results/date_zbar_transient.dat"
     #else
         zbarFile.open("results/zbar.dat");
         dateZbarFile.open("results/date_zbar.dat");
