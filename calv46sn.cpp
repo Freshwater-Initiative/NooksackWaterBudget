@@ -242,7 +242,7 @@ int calcts( double **Si,            const vector<vector<double> > &Sp,  double *
         }
         extraFiles[i] << left << dec << setw(11) << "Date";
         for (jsub = 0; jsub < Nsub; jsub++) {
-            extraFiles[i] << setw(12) << "Drainage_" << left << dec << setw(5)
+            extraFiles[i] << setw(9) << "Drainage_" << left << dec << setw(8)
                           << input_structures::Drainage[index_to_real_DID[jsub]].RealDrainageID;
         }
         extraFiles[i] << endl;
@@ -256,9 +256,9 @@ int calcts( double **Si,            const vector<vector<double> > &Sp,  double *
         } else {
             cerr << "File # " << dec << setw(2) << i << " " << resultsFileNames[i-offset] << " opened" << endl;
         }
-        oFile[i] << dec << setw(11) << "Date";
+        oFile[i] << left  << dec << setw(11) << "Date";
         for (jsub = 0; jsub < Nsub; jsub++) {
-            oFile[i] << setw(10) << "Drainage_" << left << dec << setw(5)
+            oFile[i] << setw(9) << "Drainage_" << left << dec << setw(6)
                      << input_structures::Drainage[index_to_real_DID[jsub]].RealDrainageID;;
         }
         oFile[i] << '\n';
@@ -272,12 +272,12 @@ int calcts( double **Si,            const vector<vector<double> > &Sp,  double *
             cerr << "File # " << dec << setw(2) << i << " " << resultsFileNames[i-offset] << " opened" << endl;
         }
         if (i == 34 || i == 37) {
-            oFile[i] << setw(11) << "Months";
+            oFile[i] << left  << setw(11) << "Months";
         } else {
-            oFile[i] << setw(11) << "Years";
+            oFile[i] << left  << setw(11) << "Years";
         }
         for (jsub = 0; jsub < Nsub; jsub++) {
-            oFile[i] << setw(10) << "Drainage_" << left << dec << setw(5)
+            oFile[i] << setw(9) << "Drainage_" << left << dec << setw(6)
                      << input_structures::Drainage[index_to_real_DID[jsub]].RealDrainageID;;
         }
         oFile[i] << '\n';
@@ -306,16 +306,16 @@ int calcts( double **Si,            const vector<vector<double> > &Sp,  double *
         TcodeStr.str("");
         AcodeStr.clear();
         AcodeStr.str("");
-        oFile[i+ncode] << setw(11) << "Year end";
+        oFile[i+ncode] << left  << setw(11) << "Year_end";
         if (i+ncode+NuserTypes >= 23 &&i+ncode+NuserTypes < 28) {
-            oFile[i+ncode+NuserTypes] << setw(11) << "Months";
+            oFile[i+ncode+NuserTypes] << left  << setw(11) << "Months";
         } else {
-            oFile[i+ncode+NuserTypes] << setw(11) << "Years";
+            oFile[i+ncode+NuserTypes] << left  << setw(11) << "Years";
         }
         for (jsub = 0; jsub < Nsub; jsub++) {
-            oFile[i+ncode] << setw(10) << "Drainage_" << left << dec << setw(5)
+            oFile[i+ncode] << setw(9) << "Drainage_" << left << dec << setw(6)
                            << input_structures::Drainage[index_to_real_DID[jsub]].RealDrainageID;
-            oFile[i+ncode+NuserTypes] << setw(10) << "Drainage_" << left << dec << setw(5)
+            oFile[i+ncode+NuserTypes] << setw(9) << "Drainage_" << left << dec << setw(6)
                                       << input_structures::Drainage[index_to_real_DID[jsub]].RealDrainageID;
         }
         oFile[i+ncode] << '\n';
@@ -331,7 +331,7 @@ int calcts( double **Si,            const vector<vector<double> > &Sp,  double *
     }
     oFile[16] << left << dec << setw(11) << "Date";
     for (jsub = 0; jsub < Nsub; jsub++) {
-        oFile[16] << setw(12) << "Drainage_" << left << dec << setw(5)
+        oFile[16] << setw(9) << "Drainage_" << left << dec << setw(8)
                   << input_structures::Drainage[index_to_real_DID[jsub]].RealDrainageID;
     }
     oFile[16] << endl;

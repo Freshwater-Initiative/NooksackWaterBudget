@@ -41,7 +41,7 @@ int Write_OutputLine(ofstream &oFile, const string fileName, const int timestep,
 		LocationTypeString = "Drainage_";
 		oFile << setw(13) << "TimeStep     ";
 		for (i = 0; i < NumDrainage; i++) {
-			oFile << setw(10) << LocationTypeString << left << dec << setw(6)
+			oFile << setw(9) << LocationTypeString << left << dec << setw(7)
 			      << Drainage[index_to_real_DID[i]].RealDrainageID;
 		}
 		oFile << '\n';
@@ -138,7 +138,7 @@ const vector<double> &Rvariable, const int NumDrainage, const double scalefactor
 		LocationTypeString = "Drainage_";
 		oFile << setw(13) << "TimeStep     ";
 		for (i = 0; i < NumDrainage; i++) {
-			oFile << setw(10) << LocationTypeString << left << dec << setw(5)
+			oFile << setw(9) << LocationTypeString << left << dec << setw(6)
 			      << Drainage[index_to_real_DID[i]].RealDrainageID;
 		}
 		oFile << '\n';
@@ -184,7 +184,7 @@ const valarray<double> &Rvariable, const int NumDrainage, const double scalefact
 		LocationTypeString = "Drainage_";
 		oFile << setw(13) << "Date         ";
 		for (i = 0; i < NumDrainage; i++) {
-			oFile << setw(10) << LocationTypeString << left << dec << setw(5)
+			oFile << setw(9) << LocationTypeString << left << dec << setw(6)
 			      << Drainage[index_to_real_DID[i]].RealDrainageID;
 		}
 		oFile << '\n';
