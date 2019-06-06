@@ -1,0 +1,84 @@
+   DRAINID                  DRAINAGENAME      DTW_SS_FT     DTW_IRR_FT  DTW_NONIRR_FT
+         2                        Blaine           11.8           17.6            8.7
+         3                  Breckenridge           12.9           14.2           11.6
+         4                    California            6.1           11.4            2.6
+         5                  Cherry Point            1.2           12.6           -1.0
+         6                          Dale            7.1           11.0            5.3
+         7                          Deer            4.5           18.4            1.1
+         8                         Fazon           26.3           34.5           21.6
+         9                     Fingalson           32.5           70.1           19.9
+        10                      Fishtrap            8.6           10.8            7.0
+        11                      Fourmile           12.4           15.3           10.0
+        12                        Haynie           13.8           20.5           10.2
+        13                       Johnson            5.7            7.1            4.4
+        14                        Jordan            0.9            3.1           -1.0
+        15                          Kamm           10.2           11.2            9.3
+        16                  Lake Terrell           -1.0           16.2           -1.0
+        17               Little Campbell           -1.0            4.6           -1.0
+        18                Lower Anderson            8.5           22.3            1.9
+        19                  Lower Dakota           20.3           23.7           17.0
+        20          Lummi Peninsula West            2.8            4.2            1.4
+        21             Lummi River Delta            3.4            4.3            2.4
+        22    Nooksack Deming to Everson           11.2           14.8            8.5
+        23           North Fork Anderson           46.8          119.9           -1.0
+        24             North Fork Dakota           -1.0           -1.0           -1.0
+        25                          Saar            5.2            6.5            3.8
+        26                   Sandy Point           -1.0            1.2           -1.0
+        27                        Schell            5.5            7.1            4.3
+        28                     Schneider            8.1            9.8            6.7
+        29                         Scott            9.9           10.8            9.3
+        30                     Semiahmoo            7.0           26.7           -1.0
+        31                        Silver            8.4           15.0            3.3
+        32                         Smith           13.5           17.5           10.5
+        33           South Fork Anderson           -1.0           58.0           -1.0
+        34             South Fork Dakota           14.4           19.5           11.2
+        35                         Swift           10.6           15.9            9.5
+        36                      Ten Mile            6.3           12.5            3.5
+        37                      Willband           -1.0           -1.0           -1.0
+        38       Wiser Lake/Cougar Creek            8.7           12.1            6.1
+       101                 BertrandSub-1           10.1           10.9            9.5
+       102                 BertrandSub-2            6.2            6.9            5.7
+       103                 BertrandSub-3           13.7           15.4           12.0
+       104                 BertrandSub-4           22.1           23.6           20.6
+       105                 BertrandSub-5           16.6           19.1           14.3
+       106                 BertrandSub-6           18.9           20.8           17.4
+       107                 BertrandSub-7           22.7           25.1           20.6
+       108                 BertrandSub-8           16.2           19.8           13.5
+       109                 BertrandSub-9            7.3            9.3            5.6
+      1010                BertrandSub-10            6.9            8.0            6.1
+      1011                BertrandSub-11            4.0            4.5            3.6
+      1012                BertrandSub-12           -1.0           -1.0           -1.0
+      1013                BertrandSub-13           30.4           36.3           25.3
+      1014                BertrandSub-14           65.3           74.1           58.0
+      1015                BertrandSub-15            5.8            7.3            5.0
+      1016                BertrandSub-16           14.6           18.0           12.1
+      1017                BertrandSub-17           11.3           13.3            9.8
+      1018                BertrandSub-18           13.5           14.5           12.5
+      1019                BertrandSub-19           10.3           11.2            8.6
+      1020                BertrandSub-20           18.2           20.4           15.2
+      1021                BertrandSub-21           13.4           13.7           13.1
+      1022                BertrandSub-22            6.3           11.4           -1.0
+      1023                BertrandSub-23           33.4           67.5           27.1
+      1024                BertrandSub-24            3.2           32.2           -1.0
+      1025                BertrandSub-25           12.8           14.0           11.6
+      1026                BertrandSub-26           -1.0           -1.0           -1.0
+      1027                BertrandSub-27           13.1           13.7           12.3
+      1028                BertrandSub-28            7.9           21.3            0.0
+      1029                BertrandSub-29            7.8           17.1            1.9
+      1030                BertrandSub-30           35.2           57.1           20.1
+      1031                BertrandSub-31           52.7           81.1           34.1
+      1032                BertrandSub-32            7.8            9.2            5.7
+      1033                BertrandSub-33           -1.0           -1.0           -1.0
+      1034                BertrandSub-34           18.5           23.5           15.9
+      1035                BertrandSub-35           21.4           29.4           16.8
+      1036                BertrandSub-36           58.2          104.2           22.3
+      1037                BertrandSub-37           40.4           63.3           27.9
+      1038                BertrandSub-38           17.5           21.0           14.4
+      1039                BertrandSub-39           16.3           19.6           14.0
+      1040                BertrandSub-40           13.2           16.9           10.4
+      1041                BertrandSub-41            6.4            7.2            5.8
+      1042                BertrandSub-42           17.6           21.6           14.4
+      1043                BertrandSub-43            8.4           13.6            5.3
+      1044                BertrandSub-44            6.1            8.8            5.2
+      1045                BertrandSub-45           16.2           20.8           12.3
+      1046                BertrandSub-46           13.4           16.1           11.3
